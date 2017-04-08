@@ -1,0 +1,8 @@
+---
+name: geodash-plugin-angular-component-map-overlays
+components:
+  - GeoDashComponentMapOverlays.ts
+templates:
+  - geodashMapOverlays.tpl.html
+less:
+  - map_overlays.less
