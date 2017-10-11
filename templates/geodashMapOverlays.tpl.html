@@ -1,4 +1,5 @@
-<div *ngFor="let overlay of overlays; let i = index">
+<div
+  *ngFor="let overlay of overlays; let i = index">
   <div *ngIf="overlay.link | ternary_defined : false : true">
     <div
       *ngIf="overlay.type == 'text'"
@@ -12,8 +13,8 @@
       [attr.data-toggle]="overlay.tooltip | ternary_defined : 'tooltip': ''"
       [attr.data-placement]="overlay | extract : 'tooltip' : 'placement' | default_if_undefined_or_blank : ''"
       [attr.title]="overlay | extract : 'tooltip.content' | default_if_undefined_or_blank : ''"
-      [innerHTML]="overlay | extract : 'text.content' | md2html"
-      (click)="onClick($event, overlay)">
+      [innerHTML]="overlay.text_content | md2html"
+      (click)="onClickOverlay($event, overlay)">
     </div>
     <div
       *ngIf="overlay.type == 'image'"
@@ -36,7 +37,7 @@
     *ngIf="overlay.link | ternary_defined : true : false"
     [attr.href]="overlay | extract : 'link.url'"
     [attr.target]="overlay | extract : 'link.target'"
-    (click)="onClick($event, overlay)">
+    (click)="onClickOverlay($event, overlay)">
     <div
       *ngIf="overlay.type == 'text'"
       [attr.data-overlay-index]="i"
@@ -48,7 +49,7 @@
       [attr.data-toggle]="overlay.tooltip | ternary_defined : 'tooltip': ''"
       [attr.data-placement]="overlay | extract : 'tooltip.placement' | default_if_undefined_or_blank : ''"
       [attr.title]="overlay | extract : 'tooltip.content' | default_if_undefined_or_blank : ''"
-      [innerHTML]="overlay | extract : 'text.content' | md2html">
+      [innerHTML]="overlay.text_content | md2html">
     </div>
     <div
       *ngIf="overlay.type == 'image'"
